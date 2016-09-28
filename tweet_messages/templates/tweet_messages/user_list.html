@@ -1,0 +1,39 @@
+{% extends 'tweet_messages/base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+  {{ block.super }} - Home
+{% endblock %}
+
+{% block content_classes %}
+    {{block.super}} index-content
+{% endblock content_classes %}
+
+{% block content %}
+
+  <div class="row">
+    <div class="col-md-12">
+      <h2>User List</h2>
+    </div>
+  </div>
+  {% for x in user_list %}
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"></h3>
+          </div>
+          <div class="panel-body">
+            {{x.get_username}} | {{x.pk}}
+            <a href="http://localhost:8000/users/{{x.pk}}/">see all users tweets</a>
+            </a>
+          </div>
+        </div>
+    </div>
+  </div>
+  {% endfor %}
+
+
+
+{% endblock %}
