@@ -38,12 +38,12 @@
             <div class="collapse navbar-collapse" id="tweet-clone-nav">
               <ul class="nav navbar-nav navbar-right">
                 {% if request.user.is_authenticated %}
-                    <li><a href="{% url 'tweet_messages:index' %}">Users</a></li>
+                    <li><a href="{% url 'tweet_messages:user_list' %}">Users</a></li>
                     <li><a href="{% url 'tweet_messages:create_message' %}">Create Post</a></li>
                     <li><a href="http://localhost:8000/users/{{request.user.pk}}/">My Posts</a></li>
                     <li><a href="{% url 'tweet_messages:logout' %}">Logout</a></li>
                 {% else %}
-                    <li><a href="">Sign Up</a></li>
+                    <li><a href="{% url 'tweet_messages:register' %}">Sign Up</a></li>
                     <li><a href="{% url 'tweet_messages:login' %}">Login</a></li>
                 {% endif %}
               </ul>

@@ -35,3 +35,15 @@ body {
     width: 300px;
     height: 225px;
 }
+
+.profile-pic {
+    float: left;
+    background-color: #ccc;
+    margin-right: 20px;
+    padding: 5px;
+}
+
+.user-message-body-wrapper .panel-body {
+    padding-top: 15px;
+    padding-bottom: 0px;
+}

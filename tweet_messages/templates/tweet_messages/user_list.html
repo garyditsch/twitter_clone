@@ -21,14 +21,18 @@
     <div class="col-md-8 col-md-offset-2">
         
         <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title"></h3>
-          </div>
-          <div class="panel-body">
-            {{x.get_username}} | {{x.pk}}
-            <a href="http://localhost:8000/users/{{x.pk}}/">see all users tweets</a>
-            </a>
-          </div>
+            <div class="profile-pic">
+              <img src="{% static 'images/awesome_profile.png' %}" height="100px" weight="100px">
+            </div>
+            <div class="panel-heading">
+              <h3 class="panel-title">{{x.get_username}}</h3>
+            </div>
+            <div class="user-message-body-wrapper">
+              <div class="panel-body">
+                <a href="http://localhost:8000/users/{{x.pk}}/">... see all {{x.get_username}} tweets</a>
+                </a>
+              </div>
+            </div>
         </div>
     </div>
   </div>

@@ -3,7 +3,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .models import TweetMessage, Profile
-from .forms import TweetMessageForm
+from .forms import TweetMessageForm, UserRegistrationForm
 
 def index(request):
 
@@ -11,6 +11,7 @@ def index(request):
 
     context = {
         "tweets": tweets,
+    
     }
 
     return render(request, "tweet_messages/index.html", context)
@@ -54,3 +55,24 @@ def create_message(request):
     }
 
     return render(request, "tweet_messages/create_message.html", context)
+
+
+def register(request):
+    if request.method== "POST":
+        form = UserRegistrationForm(request.POST)
+
+        if form.is_valid():
+                new_user = form.save(commit=False)
+
+                new_user.set_password(form.cleaned_data['password'])
+                new_user.save()
+                messages.success(request, "User Created! Please login below")
+
+                return redirect('tweet_messages:login')
+    else:
+        form = UserRegistrationForm()
+
+    context = {
+        "form": form,
+    }
+    return render(request, "tweet_messages/registration.html", context)

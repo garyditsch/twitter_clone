@@ -12,28 +12,30 @@
 {% block content %}
 
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-8 col-md-offset-2">
       <h2>{{tweeter}}</h2>
     </div>
+
   </div>
   {% for message in tweets %}
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
-        
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">{{message}}</h3>
+
+<!-- Start message display panel -->
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="panel-title pull-left">
+              <i class="fa fa-commenting" aria-hidden="true"></i>
           </div>
-          <div class="panel-body">
-            ....
-            <a href="">
-            </a>
-          </div>
+          <div class="pull-right">{{message.date}}</div>
+          <div class="clearfix"></div>
         </div>
+        <div class="panel-body"> {{message}}</div>
+      </div>
+<!-- End message display panel -->
+        
     </div>
   </div>
   {% endfor %}
-
-
 
 {% endblock %}

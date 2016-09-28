@@ -16,6 +16,6 @@ urlpatterns = [
         'django.contrib.auth.views.logout', 
         {'template_name': 'registration/logout.html'},
         name='logout'),
-    # url(r'^artist/(?P<id>\d+)/$', views.artist_page, name='artist_page'),
-
+    url(r'^register/$', views.register, name='register'),
+    
 ]
