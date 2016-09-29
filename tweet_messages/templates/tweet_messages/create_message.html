@@ -1,5 +1,6 @@
 {% extends 'tweet_messages/base.html' %}
 {% load staticfiles %}
+{% load crispy_forms_tags %}
 
 {% block title %}
   {{ block.super }} - Create a Message
@@ -11,16 +12,17 @@
 
 {% block content %}
 
+ 
   <div class="row">
     <div class="col-md-8">
       <form action="" method="POST">
         {% csrf_token %}
-        {% for field in form %}
-            {{field}}
-        {% endfor %}
+        {{form|crispy}}
         <button type="submit" class="btn btn-primary btn-block btn-lg">Post</button>
       </form>
     </div>
   </div>
+
+
 
 {% endblock %}

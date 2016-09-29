@@ -1,5 +1,6 @@
 {% extends 'tweet_messages/base.html' %}
 {% load staticfiles %}
+{% load gravatar_tags %}
 
 {% block title %}
   {{ block.super }} - Home
@@ -19,10 +20,9 @@
   {% for x in user_list %}
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
-        
         <div class="panel panel-default">
             <div class="profile-pic">
-              <img src="{% static 'images/awesome_profile.png' %}" height="100px" weight="100px">
+              <img src="{{ x|gravatar:100 }}" />
             </div>
             <div class="panel-heading">
               <h3 class="panel-title">{{x.get_username}}</h3>

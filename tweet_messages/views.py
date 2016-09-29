@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.core.urlresolvers import reverse
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -66,8 +67,14 @@ def register(request):
         if form.is_valid():
             form.save()
 
-            messages.success(request, "User Created! Please login below")
-            return redirect('tweet_messages:login')
+            messages.success(request, "User Created!")
+
+            new_user = authenticate(username=form.cleaned_data['username'],
+                                    password=form.cleaned_data['password1'],
+                                    )
+            login(request, new_user)
+
+            return redirect('tweet_messages:user_list')
     else:
         form = UserRegistrationForm()
 
