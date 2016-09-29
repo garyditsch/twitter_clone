@@ -11,6 +11,10 @@ class TweetMessage(models.Model):
     date = models.DateTimeField('date created', default=datetime.now)
     hashtag = models.CharField(max_length=20, blank=True)
 
+    class Meta:
+        ordering = ['-date']
+
+
     def __str__(self):
         return self.tweet_messages
 

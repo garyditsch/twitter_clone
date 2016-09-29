@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import TweetMessage, Profile
 from .forms import TweetMessageForm, UserRegistrationForm
@@ -46,6 +47,7 @@ def create_message(request):
             new_message = form.save(commit=False)
             new_message.user_id = request.user.pk
             new_message.save()
+            messages.success(request, 'Message Posted!')
             return redirect('tweet_messages:index')
     else:
         form=TweetMessageForm()
@@ -62,13 +64,10 @@ def register(request):
         form = UserRegistrationForm(request.POST)
 
         if form.is_valid():
-                new_user = form.save(commit=False)
+            form.save()
 
-                new_user.set_password(form.cleaned_data['password'])
-                new_user.save()
-                messages.success(request, "User Created! Please login below")
-
-                return redirect('tweet_messages:login')
+            messages.success(request, "User Created! Please login below")
+            return redirect('tweet_messages:login')
     else:
         form = UserRegistrationForm()
 

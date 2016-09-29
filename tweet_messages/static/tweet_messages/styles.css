@@ -47,3 +47,13 @@ body {
     padding-top: 15px;
     padding-bottom: 0px;
 }
+
+
+#registration_form .help-block {
+    display: none;
+}
+
+#registration_form .btn-primary {
+    margin-top: 20px;
+}
+

@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'tweet_messages',
+    'crispy_forms',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -111,3 +112,4 @@ LOGOUT_URL = reverse_lazy('tweet_messages:logout')
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+
