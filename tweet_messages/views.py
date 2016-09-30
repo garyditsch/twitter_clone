@@ -3,6 +3,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from .models import TweetMessage, Profile
 from .forms import TweetMessageForm, UserRegistrationForm
