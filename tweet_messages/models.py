@@ -24,3 +24,10 @@ class Profile(models.Model):
 
     def get_absolute_url(self):
         return reverse('tweet_messages:user_page', kwargs={'id': self.pk})
+
+class Promo(models.Model):
+    user = models.OneToOneField(User)
+    promo_code = CharField(max_length=10)
+
+    def __str__(self):
+        return self.promo_code

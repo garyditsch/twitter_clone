@@ -24,8 +24,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ['SECRET_KEY']
 
+TWILIO_ACCOUNT_SID = os.environ['TWILIO_ACCOUNT_SID']
+TWILIO_AUTH_TOKEN = os.environ['TWILIO_AUTH_TOKEN']
+
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True 
+# SECURITY WARNING: this needs to be set to TRUE in production.
+# DJANGO_TWILIO_FORGERY_PROTECTION = True
 
 ALLOWED_HOSTS = []
 
@@ -43,6 +48,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'tweet_messages',
     'crispy_forms',
+    'django_twilio',
 )
 
 MIDDLEWARE_CLASSES = (

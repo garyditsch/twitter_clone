@@ -7,6 +7,9 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from .models import TweetMessage, Profile
 from .forms import TweetMessageForm, UserRegistrationForm
+from twilio.twiml import Response
+from django_twilio.decorators import twilio_view
+
 
 def index(request):
 
@@ -83,3 +86,10 @@ def register(request):
         "form": form,
     }
     return render(request, "tweet_messages/registration.html", context)
+
+@twilio_view
+def reply_to_sms_messages(request):
+    # import pdb; pdb.set_trace()
+    r = Response()
+    r.message('Stupid Twilio!')
+    return r

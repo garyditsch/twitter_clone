@@ -17,5 +17,5 @@ urlpatterns = [
         {'template_name': 'registration/logout.html'},
         name='logout'),
     url(r'^register/$', views.register, name='register'),
-    
+    url(r'^sms/$', views.reply_to_sms_messages),
 ]
