@@ -5,8 +5,8 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
-from .models import TweetMessage, Profile
-from .forms import TweetMessageForm, UserRegistrationForm
+from .models import TweetMessage, Profile, Promo
+from .forms import TweetMessageForm, UserRegistrationForm, ProfileForm, PromoForm
 from twilio.twiml import Response
 from django_twilio.decorators import twilio_view
 
@@ -67,23 +67,32 @@ def create_message(request):
 def register(request):
     if request.method== "POST":
         form = UserRegistrationForm(request.POST)
+        form3 = PromoForm(request.POST)
 
-        if form.is_valid():
-            form.save()
-
-            messages.success(request, "User Created!")
+        if form.is_valid() and form3.is_valid():
+            codes = Promo.objects.all()
+            user_code = form3.save(commit=False)
+            for code in codes:
+                if user_code.promo_code == code.promo_code: 
+                    new_user = form.save(commit=False)
+                    new_user.set_password(form.cleaned_data['password'])
+                    # new_user.promo_code = user_code.promo_code
+                    new_user.save()
 
             new_user = authenticate(username=form.cleaned_data['username'],
-                                    password=form.cleaned_data['password1'],
-                                    )
+                            password=form.cleaned_data['password'],
+                            )
             login(request, new_user)
+            messages.success(request, "User Created!")
 
             return redirect('tweet_messages:user_list')
     else:
         form = UserRegistrationForm()
+        form3 = PromoForm()
 
     context = {
         "form": form,
+        "form3": form3,
     }
     return render(request, "tweet_messages/registration.html", context)
 

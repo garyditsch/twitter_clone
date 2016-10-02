@@ -49,6 +49,7 @@ INSTALLED_APPS = (
     'tweet_messages',
     'crispy_forms',
     'django_twilio',
+    'phonenumber_field',
 )
 
 MIDDLEWARE_CLASSES = (

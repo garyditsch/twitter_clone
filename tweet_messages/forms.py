@@ -1,7 +1,8 @@
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User 
+from phonenumber_field.modelfields import PhoneNumberField
 from django import forms
-from .models import TweetMessage, Profile
+from .models import TweetMessage, Profile, Promo
 from . import views
 
 
@@ -16,16 +17,34 @@ class TweetMessageForm(forms.ModelForm):
 class LoginForm(AuthenticationForm):
     pass
 
-class UserRegistrationForm(UserCreationForm):
-    email = forms.EmailField(required=True)
+class PromoForm(forms.ModelForm):
+    promo_code = forms.CharField(max_length=10)
+
+    class Meta:
+        model = Promo
+        fields = ('promo_code',)
+
+
+class ProfileForm(forms.ModelForm):
+    phone_number = PhoneNumberField()
+    bio = forms.CharField(max_length=200)
+
+    class Meta:
+        model = Profile
+        fields = ('phone_number', 'bio',)
+
+class UserRegistrationForm(forms.ModelForm):
+    password = forms.CharField(label='Password', widget=forms.PasswordInput)
+    password2 = forms.CharField(label='Repeat Password', widget=forms.PasswordInput)
 
     class Meta:
         model = User
-        fields = ("username", "email", "password1", "password2")
+        fields = ('username', 'first_name', 'email', 'password', 'password2',)
 
-    def save(self, commit=True):
-        user = super(UserRegistrationForm, self).save(commit=False)
-        user.email = self.cleaned_data["email"]
-        if commit:
-            user.save()
-        return user
+
+    def clean_password2(self):
+        cd = self.cleaned_data
+
+        if cd['password'] != cd['password2']:
+            raise forms.ValidationError('Passwords do not match.')
+        return cd['password2']

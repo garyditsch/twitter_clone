@@ -3,6 +3,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from datetime import datetime
 from django.http import HttpResponse
+from phonenumber_field.modelfields import PhoneNumberField
 
 # Create your models here.
 class TweetMessage(models.Model):
@@ -20,14 +21,16 @@ class TweetMessage(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User)
+    bio = models.CharField(max_length=200, blank=True)
     profile_pic = models.ImageField(blank=True)
+    phone_number = PhoneNumberField(blank=True)
 
-    def get_absolute_url(self):
-        return reverse('tweet_messages:user_page', kwargs={'id': self.pk})
+    def __str__(self):
+        return self.user.username
+    
 
 class Promo(models.Model):
-    user = models.OneToOneField(User)
-    promo_code = CharField(max_length=10)
+    promo_code = models.CharField(max_length=10)
 
     def __str__(self):
         return self.promo_code
