@@ -1,3 +1,4 @@
 *.pyc
 __pycache__
 *.DStore
+settings_local.py

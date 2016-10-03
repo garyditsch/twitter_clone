@@ -67,9 +67,10 @@ def create_message(request):
 def register(request):
     if request.method== "POST":
         form = UserRegistrationForm(request.POST)
+        form2 = ProfileForm(request.POST)
         form3 = PromoForm(request.POST)
 
-        if form.is_valid() and form3.is_valid():
+        if form.is_valid() and form2.is_valid() and form3.is_valid():
             codes = Promo.objects.all()
             user_code = form3.save(commit=False)
             for code in codes:
@@ -77,7 +78,17 @@ def register(request):
                     new_user = form.save(commit=False)
                     new_user.set_password(form.cleaned_data['password'])
                     # new_user.promo_code = user_code.promo_code
+                    print(new_user)
+                    print(new_user.user.pk)
+                    print(type(new_user))
                     new_user.save()
+                    print(new_user)
+                    user_profile = form2.save(commit=False)
+                    # user_profile.user = new_user
+                    print(new_user)
+                    print(user_profile)
+                    print(user_profile.pk)
+                    print(type(user_profile))
 
             new_user = authenticate(username=form.cleaned_data['username'],
                             password=form.cleaned_data['password'],
@@ -88,10 +99,12 @@ def register(request):
             return redirect('tweet_messages:user_list')
     else:
         form = UserRegistrationForm()
+        form2 = ProfileForm()
         form3 = PromoForm()
 
     context = {
         "form": form,
+        "form2": form2,
         "form3": form3,
     }
     return render(request, "tweet_messages/registration.html", context)
