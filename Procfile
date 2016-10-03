@@ -1,1 +1,1 @@
-web: gunicorn twitter-clone.wsgi
+web: gunicorn twitter_clone.wsgi
