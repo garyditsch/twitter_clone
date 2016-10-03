@@ -20,11 +20,10 @@ class TweetMessage(models.Model):
         return self.tweet_messages
 
 class Profile(models.Model):
-    user = models.OneToOneField(User)
+    user = models.ForeignKey(User)
     bio = models.CharField(max_length=200, blank=True)
     profile_pic = models.ImageField(blank=True)
     phone_number = PhoneNumberField(blank=True)
-    promo_code = models.CharField(max_length=10, blank=True)
 
     def __str__(self):
         return self.user.username
