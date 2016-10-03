@@ -28,11 +28,14 @@ TWILIO_ACCOUNT_SID = os.environ['TWILIO_ACCOUNT_SID']
 TWILIO_AUTH_TOKEN = os.environ['TWILIO_AUTH_TOKEN']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True 
+DEBUG = False  
 # SECURITY WARNING: this needs to be set to TRUE in production.
 # DJANGO_TWILIO_FORGERY_PROTECTION = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
+
+import dj_database_url
+DATABASES['default'] = dj_database_url.config()
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
@@ -84,20 +87,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'twitter_clone.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/1.8/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'twitter_clone',
-        'USER': 'garyditsch',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '',
-    }
-}
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
@@ -121,4 +110,5 @@ LOGOUT_URL = reverse_lazy('tweet_messages:logout')
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
