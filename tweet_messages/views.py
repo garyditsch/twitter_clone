@@ -113,5 +113,5 @@ def register(request):
 def reply_to_sms_messages(request):
     # import pdb; pdb.set_trace()
     r = Response()
-    r.message('Stupid Twilio!')
+    r.message('Hey Bootcampers, thanks for checking out my site!')
     return r
