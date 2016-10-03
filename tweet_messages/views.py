@@ -69,7 +69,7 @@ def register(request):
         form = UserRegistrationForm(request.POST)
         # form2 = ProfileForm(request.POST)
         form3 = PromoForm(request.POST)
-
+        #testing out git
         if form.is_valid() and form3.is_valid():
             codes = Promo.objects.all()
             user_code = form3.save(commit=False)
