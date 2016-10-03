@@ -29,7 +29,7 @@
             </div>
             <div class="user-message-body-wrapper">
               <div class="panel-body">
-                <a href="http://localhost:8000/users/{{x.pk}}/">... see all {{x.get_username}} tweets</a>
+                <a href="{% url 'tweet_messages:user_page' x.pk %}">... see all {{x.get_username}} tweets</a>
                 </a>
               </div>
             </div>
