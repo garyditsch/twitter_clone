@@ -20,7 +20,7 @@ class TweetMessage(models.Model):
         return self.tweet_messages
 
 class Profile(models.Model):
-    user = models.ForeignKey(User)
+    user = models.OneToOneField(User)
     bio = models.CharField(max_length=200, blank=True)
     profile_pic = models.ImageField(blank=True)
     phone_number = PhoneNumberField(blank=True)

@@ -2,7 +2,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User 
 from phonenumber_field.modelfields import PhoneNumberField
 from django import forms
-from .models import TweetMessage, Profile, Promo
+from .models import TweetMessage, Promo, Profile
 from . import views
 
 

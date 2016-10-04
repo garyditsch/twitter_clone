@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
-from .models import TweetMessage, Profile, Promo
+from .models import TweetMessage, Promo, Profile
 from .forms import TweetMessageForm, UserRegistrationForm, ProfileForm, PromoForm
 from twilio.twiml import Response
 from django_twilio.decorators import twilio_view
@@ -70,7 +70,7 @@ def register(request):
         form2 = ProfileForm(request.POST)
         form3 = PromoForm(request.POST)
         #testing out git
-        if form.is_valid() and form2.is_valid and form3.is_valid():
+        if form.is_valid() and form2.is_valid() and form3.is_valid():
             codes = Promo.objects.all()
             user_code = form3.save(commit=False)
             for code in codes:
@@ -81,13 +81,14 @@ def register(request):
                     
                     #save new user to database
                     new_user.save()
-                    print("new user: " + str(new_user))
+                    # print("new user: " + str(new_user))
 
                     #create instance of profile object, but do not save to database
                     user_profile = form2.save(commit=False)
                     # print ("type profile: " + type(user_profile))
                     # print ("new_user id: " + new_user.id)
-                    user_profile.user = new_user.id
+                    user_profile.user_id = new_user.id
+                    # import pdb; pdb.set_trace()
                     user_profile.save()
                     
 
