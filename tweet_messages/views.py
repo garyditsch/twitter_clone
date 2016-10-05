@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
-from .models import TweetMessage, Promo, Profile
+from .models import TweetMessage, Promo, Profile, TwilioMessage 
 from .forms import TweetMessageForm, UserRegistrationForm, ProfileForm, PromoForm
 from twilio.twiml import Response
 from django_twilio.decorators import twilio_view
@@ -113,7 +113,13 @@ def register(request):
 
 @twilio_view
 def reply_to_sms_messages(request):
-    # import pdb; pdb.set_trace()
     r = Response()
     r.message('Hey Bootcampers, thanks for checking out my site!')
     return r
+
+    twilio_message = request.POST.get('Body', '')
+    twilio_message.save()
+    
+
+
+

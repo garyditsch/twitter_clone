@@ -34,3 +34,6 @@ class Promo(models.Model):
 
     def __str__(self):
         return self.promo_code
+
+class TwilioMessage(models.Model):
+    twilio_message = models.CharField(max_length=140)
