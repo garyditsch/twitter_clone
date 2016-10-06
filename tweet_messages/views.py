@@ -114,11 +114,14 @@ def register(request):
 @twilio_view
 def reply_to_sms_messages(request):
     r = Response()
+    print(r)
     r.message('Hey Bootcampers, thanks for checking out my site!')
+
+    TwilioMessage.objects.create(twilio_message=request.POST.get('Body', ''))
     return r
 
-    twilio_message = request.POST.get('Body', '')
-    twilio_message.save()
+    # twilio_message = request.POST.get('Body', '')
+    # twilio_message.save()
     
 
 
