@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 
-from .models import TweetMessage, Profile, Promo
+from .models import TweetMessage, Profile, Promo, TwilioMessage
 
 
 class TweetMessageAdmin(admin.ModelAdmin):
@@ -15,3 +15,4 @@ class ProfileAdmin(admin.ModelAdmin):
 admin.site.register(TweetMessage, TweetMessageAdmin)
 admin.site.register(Profile, ProfileAdmin)
 admin.site.register(Promo)
+admin.site.register(TwilioMessage)
