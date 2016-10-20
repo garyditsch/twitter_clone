@@ -21,6 +21,10 @@ body {
   max-width: 960px;
 }
 
+.mdl-grid .user-page .mdl-card {
+    width: 250px;
+}
+
 /*.demo-list-action {
   width: 300px;
 }
