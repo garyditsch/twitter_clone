@@ -12,32 +12,33 @@
 
 {% block content %}
 
-  <div class="row">
-    <div class="col-md-12">
-      <h2>User List</h2>
-    </div>
-  </div>
-  {% for x in user_list %}
-  <div class="row">
-    <div class="col-md-8 col-md-offset-2">
-        <div class="panel panel-default">
+<!-- List items with avatar and action -->
+<div class="mdl-grid">
+  <div class="mdl-cell mdl-cell--2-col"></div>
+  <div class="mdl-cell mdl-cell--8-col">
+    <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--4dp">
+      <tbody>
+      
+      {% for x in user_list %}
+        <tr>
+          <td class="mdl-data-table__cell--non-numeric">
             <div class="profile-pic">
               <img src="{{ x|gravatar:100 }}" />
             </div>
-            <div class="panel-heading">
-              <h3 class="panel-title">{{x.get_username}}</h3>
-            </div>
-            <div class="user-message-body-wrapper">
-              <div class="panel-body">
-                <a href="{% url 'tweet_messages:user_page' x.pk %}">... see all {{x.get_username}} tweets</a>
-                </a>
-              </div>
-            </div>
-        </div>
-    </div>
+          </td>
+          <td class="mdl-data-table__cell--non-numeric">
+            <h5>{{x.get_username}}</h5>
+          </td>
+          <td class="mdl-data-table__cell--non-numeric">
+            <a href="{% url 'tweet_messages:user_page' x.pk %}">... see all {{x.get_username}} tweets</a>
+          </td>
+        </tr>
+      {% endfor %}
+
+      </tbody>
+    </table>
   </div>
-  {% endfor %}
-
-
+  <div class="mdl-cell mdl-cell--2-col"></div>
+</div>
 
 {% endblock %}

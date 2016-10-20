@@ -23,17 +23,21 @@
  {% endif %}
 
 <div class="mdl-grid">
+  <!-- <div class="mdl-cell"> -->
   
   {% for tweet in tweets %}
       <!-- start card -->
     <div class="mdl-cell mdl-cell--6-col">
 
        <div class="mdl-card mdl-shadow--4dp">
-        <div class="mdl-card__media"><img src="skytower.jpg" width="173" height="157" border="0"
-         alt="" style="padding:10px;">
-        </div>
-        <div class="mdl-card__supporting-text">
-          {{tweet.user}} | <small>{{tweet.date}}</small>
+        <div class="mdl-card__media">
+          <div class="profile-pic">
+            <img src="{{ tweet.user|gravatar:100 }}" />
+          </div>
+          <div class="mdl-card__actions mdl-card--border">
+            <p>{{tweet.user}}</p>
+            <small>{{tweet.date}}</small>
+          </div>
         </div>
         <div class="mdl-card__supporting-text">
         {{tweet}}
@@ -43,6 +47,7 @@
 
       <!-- end card -->
   {% endfor %}
+  <!-- </div> -->
 </div>
 
 {% endblock %}

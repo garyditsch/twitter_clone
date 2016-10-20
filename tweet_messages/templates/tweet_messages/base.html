@@ -15,7 +15,7 @@
     <!-- Optional theme -->
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.indigo-pink.min.css">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.light_green-light_blue.min.css" />
 
     <script src="https://use.fontawesome.com/a04d9e4c1c.js"></script>
 
@@ -41,12 +41,14 @@
   </div>
 <!-- End Menu -->
   <main class="mdl-layout__content">
-    <div class="page-content">
+    <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--1-col"></div>
+        <div class="mdl-cell mdl-cell--10-col">
     <!-- Your content goes here -->
  
 <!-- Main Content -->
-    <div class="container">
-     <div class="{% block content_classes %}main-content{% endblock content_classes %}">
+    <!-- <div class="container">
+     <div class="{% block content_classes %}main-content{% endblock content_classes %}"> -->
         {% if messages %}
             {% for message in messages %}
                 <div class="alert alert-success">
@@ -57,10 +59,12 @@
         {% block content %}
 
         {% endblock %}
-      </div>
-    </div>
+     <!--  </div>
+    </div> -->
 
 <!-- End Main Content -->
+        </div>
+        <div class="mdl-cell mdl-cell--1-col"></div>
     </div>
   </main>
 
